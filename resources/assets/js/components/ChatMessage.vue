@@ -14,4 +14,10 @@ export default {
 </script>
 
 <style lang="css">
+.chat-message {
+    padding: 1rem;
+}
+.chat-message > p {
+    margin-bottom: .5rem;
+}
 </style>
