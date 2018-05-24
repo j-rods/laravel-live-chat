@@ -17,7 +17,9 @@ export default {
         sendMessage() {
             this.$emit('messagesent', {
                 message: this.messageText,
-                user: "Dormammu"
+                user: {
+                    name: $('a#navbarDropdown.nav-link.dropdown-toggle').text()
+                }
             })
             this.messageText = ''
         }
