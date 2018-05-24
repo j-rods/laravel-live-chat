@@ -31,8 +31,6 @@ Route::post('/messages', function () {
         'message' => request()->get('message')
     ]);
 
-    $user->save;
-
     return ['status' => 'OK'];
 })->middleware('auth');
 
