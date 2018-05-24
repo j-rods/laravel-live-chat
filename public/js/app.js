@@ -14323,7 +14323,10 @@ var app = new Vue({
     methods: {
         addMessage: function addMessage(message) {
             this.messages.push(message);
-            console.log('message added!');
+
+            axios.post('messages', message).then(function (response) {
+                console.log('message added!');
+            });
         }
     },
     created: function created() {
@@ -47845,9 +47848,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['message']
+
 });
 
 /***/ }),
@@ -47861,7 +47866,9 @@ var render = function() {
   return _c("div", [
     _c("p", [_vm._v(_vm._s(_vm.message.message))]),
     _vm._v(" "),
-    _c("small", [_vm._v(_vm._s(_vm.message.user.name))])
+    !_vm.message.user.name
+      ? _c("small", [_vm._v(_vm._s(_vm.message.user.name))])
+      : _c("small", [_vm._v(_vm._s(_vm.message.user.name))])
   ])
 }
 var staticRenderFns = []
