@@ -28,11 +28,12 @@ Route::get('/messages', function () {
 
 Route::post('/messages', function () {
     $user = Auth::user();
-    $user->messages()->create([
+
+    $message = $user->messages()->create([
         'message' => request()->get('message')
     ]);
 
-    event(new MessagePosted($message), $user);
+    event(new MessagePosted($message, $user));
 
     return ['status' => 'OK'];
 })->middleware('auth');
