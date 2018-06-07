@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessagePosted;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +22,7 @@ Route::get('/chat', function() {
 
 Auth::routes();
 
-Route::get('/messages', function () {
+Route::get('/messages', function () { 
     return App\Message::with('user')->get();
 });
 
@@ -30,6 +31,8 @@ Route::post('/messages', function () {
     $user->messages()->create([
         'message' => request()->get('message')
     ]);
+
+    event(new MessagePosted());
 
     return ['status' => 'OK'];
 })->middleware('auth');
